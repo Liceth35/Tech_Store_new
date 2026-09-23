@@ -1,0 +1,105 @@
+<!doctype html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>editar Producto</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+              <h3 class="text-center">Editar de Productos</h3>
+            </div>
+            <div class="card-body">
+              <form
+                action="/actualizar_producto"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <div class="mb-3">
+                  <label class="form-label"> Código </label>
+                  <input
+                    type="text"
+                    name="codigo"
+                    class="form-control"
+                    value="{{producto.codigo}}"
+                    readonly
+                    required
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label"> Nombre </label>
+                  <input
+                    type="text"
+                    name="nombre"
+                    class="form-control"
+                    value="{{producto.nombre}}"
+                    minlength="3"
+                    maxlength="50"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Imagen actual</label><br />
+
+                  {% if producto.imagen %}
+                  <img
+                    src="{{ url_for('static', filename='img_productos/' + producto.imagen) }}"
+                    width="120"
+                    class="img-thumbnail"
+                  />
+                  {% endif %}
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Cambiar imagen</label>
+                  <input
+                    type="file"
+                    name="imagen"
+                    class="form-control"
+                    accept="image/*"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label"> Precio </label>
+                  <input
+                    type="number"
+                    name="precio"
+                    class="form-control"
+                    value="{{producto.precio}}"
+                    min="1"
+                    required
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label"> Categoría </label>
+                  <input
+                    type="text"
+                    name="categoria"
+                    class="form-control"
+                    value="{{producto.categoria}}"
+                    required
+                  />
+                </div>
+
+                <button class="btn btn-primary w-100">Guardar Producto</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
